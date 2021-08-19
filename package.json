@@ -1,0 +1,24 @@
+{
+  "name": "up-webhook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "upWebhook_server.js",
+  "dependencies": {
+    "node.js": "^0.0.1-security"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node upWebhook_server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jwarne1/up-webhook.git"
+  },
+  "author": "jwarne",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jwarne1/up-webhook/issues"
+  },
+  "homepage": "https://github.com/jwarne1/up-webhook#readme"
+}
