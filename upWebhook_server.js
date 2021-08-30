@@ -1,7 +1,7 @@
 const http = require('http');
 const upAPI = require("./upAPI_get.js");
 const hostname = '127.0.0.1';
-const port = 80;
+const port = process.env['PORT'] || 80;
 
 // Create local http server
 var data = '';
