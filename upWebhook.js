@@ -2,10 +2,12 @@
 const https = require('https');
 const upAPI = require("./upAPI_get.js");
 const upWebhookInit = require("./upWebhook_init.js")
+const hostname = '0.0.0.0';
+const port = process.env['PORT'] || 80;
 
 // Create https server to listen to webhook
 var data = '';
-https.createServer((req, res) => {
+const server = https.createServer((req, res) => {
   req.on('data', chunk => {
     data += chunk;
   })
@@ -22,6 +24,10 @@ https.createServer((req, res) => {
     res.statusCode = 200;
     res.end();
     })
+})
+
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
 })
 
 // Initialise the webhook
