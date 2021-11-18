@@ -1,7 +1,7 @@
 // This is the main script that runs on the cloud run instance
 const https = require('https');
 const upAPI = require("./upAPI_get.js");
-const createWebhook = require("./upWebhook_init.js")
+const upWebhookInit = require("./upWebhook_init.js")
 
 // Create https server to listen to webhook
 var data = '';
@@ -25,4 +25,4 @@ https.createServer((req, res) => {
 })
 
 // Initialise the webhook
-createWebhook();
+upWebhookInit.createWebhook();
