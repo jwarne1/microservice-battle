@@ -1,7 +1,7 @@
 // This is the main script that runs on the cloud run instance
 const https = require('https');
 const upAPI = require("./upAPI_get.js");
-const createWebhook = require("./upWebhook_init")
+const createWebhook = require("./upWebhook_init.js")
 
 // Create https server to listen to webhook
 var data = '';
@@ -15,7 +15,7 @@ https.createServer((req, res) => {
     var transactionId = transactionData.data.relationships.transaction.data.id;   
     try{
       console.log(transactionId);
-      upAPI.get_transaction(transactionId);
+      upAPI.getTransaction(transactionId);
     }catch(error){
       console.log(error)
     }
