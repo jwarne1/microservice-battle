@@ -2,8 +2,6 @@
 const https = require('https');
 const upAPI = require("./upAPI_get.js");
 const createWebhook = require("./upWebhook_create")
-const hostname = '0.0.0.0';
-const port = process.env['PORT'] || 80;
 const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
 const client = new SecretManagerServiceClient();
 
@@ -34,6 +32,6 @@ const server = https.createServer((req, res) => {
     })
 })
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at https://${hostname}:${port}/`);
-})
+.createWebhook();
+
+console.log("Success!")
