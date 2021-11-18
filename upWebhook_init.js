@@ -1,9 +1,9 @@
-const https = require('https');
-const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
-const client = new SecretManagerServiceClient();
-
+// Defines function that initialises the webhook and creates a secret with the webhook token
 async function createWebhook() {
 // Access secret manager to retreive user auth token from UP
+  const https = require('https');
+  const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
+  const client = new SecretManagerServiceClient();
   const [accessResponse] = await client.accessSecretVersion({
     'name': 'projects/660173564271/secrets/UP-auth-token/versions/latest',
   });
@@ -48,6 +48,7 @@ async function createWebhook() {
   })
 
   req.write(data)
+  console.log("Webhook created successfully!")
   req.end()
 }
 

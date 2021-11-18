@@ -1,19 +1,11 @@
 // This is the main script that runs on the cloud run instance
 const https = require('https');
 const upAPI = require("./upAPI_get.js");
-const createWebhook = require("./upWebhook_create")
-const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
-const client = new SecretManagerServiceClient();
+const createWebhook = require("./upWebhook_init")
 
-// Retrieve user auth token from secret manager
-const [accessResponse] = await client.accessSecretVersion({
-  'name': 'projects/660173564271/secrets/UP-auth-token/versions/latest',
-});
-const authToken = accessResponse.payload.data.toString('utf8');
-
-// Create https server
+// Create https server to listen to webhook
 var data = '';
-const server = https.createServer((req, res) => {
+https.createServer((req, res) => {
   req.on('data', chunk => {
     data += chunk;
   })
@@ -32,6 +24,5 @@ const server = https.createServer((req, res) => {
     })
 })
 
+// Initialise the webhook
 createWebhook();
-
-console.log("Success!")

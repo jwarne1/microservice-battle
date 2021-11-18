@@ -1,4 +1,4 @@
-// Script to test successful deployment of the webhook
+// Script to test successful deployment of the webhook 
 // Executing this will send a transaction to the webhook
 const https = require('https');
 const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
