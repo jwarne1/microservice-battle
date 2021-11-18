@@ -1,39 +1,54 @@
 const https = require('https');
+const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
+const client = new SecretManagerServiceClient();
 
-// Create UP Webhook
-const data = new TextEncoder().encode(
-    JSON.stringify({
-      data: {
-        attributes: {
-          url: 'https://ac3b6cd7a854.ngrok.io',
-          description: 'Webhook running on ngrok'
+async function createWebhook() {
+// Access secret manager to retreive user auth token from UP
+  const [accessResponse] = await client.accessSecretVersion({
+    'name': 'projects/660173564271/secrets/UP-auth-token/versions/latest',
+  });
+
+  const authToken = accessResponse.payload.data.toString('utf8');
+  console.info(`Payload: ${authToken}`);
+
+  // Create UP Webhook
+  const data = new TextEncoder().encode(
+      JSON.stringify({
+        data: {
+          attributes: {
+            // URL of Cloud Run Service
+            url: 'https://up-webhook-q55fhdfira-km.a.run.app',
+            description: 'Webhook running on GCP'
+          }
         }
-      }
-    })
-  )
+      })
+    )
 
-const options = {
-  hostname: 'api.up.com.au',
-  path: '/api/v1/webhooks',
-  method: 'POST',
-  headers: {
-    'Authorization': 'Bearer up:yeah:6tuNxEg67TscZvN6xgT9FwfJf5n65CImbCQfCa8Xkc3YsZBSH8Csli1SAB9C9S3myfPyWGrnHOXGdZMGXvPjdQbyy3ZSQvTmdPnYoE41mIWrktOkg9dWVHJ2OZaWV0aa',
-    'Content-Type': 'application/json',
-    'Content-Length': data.length
+  const options = {
+    hostname: 'api.up.com.au',
+    path: '/api/v1/webhooks',
+    method: 'POST',
+    headers: {
+      'Authorization': authToken,
+      'Content-Type': 'application/json',
+      'Content-Length': data.length
+    }
   }
+
+  const req = https.request(options, res => {
+    console.log(`statusCode: ${res.statusCode}`)
+
+    res.on('data', d => {
+      process.stdout.write(d)
+    })
+  })
+
+  req.on('error', error => {
+    console.error(error)
+  })
+
+  req.write(data)
+  req.end()
 }
 
-const req = https.request(options, res => {
-  console.log(`statusCode: ${res.statusCode}`)
-
-  res.on('data', d => {
-    process.stdout.write(d)
-  })
-})
-
-req.on('error', error => {
-  console.error(error)
-})
-
-req.write(data)
-req.end()
+module.exports = {createWebhook};

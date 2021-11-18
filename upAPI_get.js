@@ -1,13 +1,23 @@
 const https = require('https');
+const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
+const client = new SecretManagerServiceClient();
 
-// Define API GET request function
+// Retrieve user auth token from secret manager
+const [accessResponse] = await client.accessSecretVersion({
+  'name': 'projects/660173564271/secrets/UP-auth-token/versions/latest',
+});
+
+const authToken = accessResponse.payload.data.toString('utf8');
+console.info(`Payload: ${authToken}`);
+
+// Defines a function that makes a GET request to the UP Transaction API
 function get_transaction(transactionId){
   const options = {
   hostname: 'api.up.com.au',
   path: '/api/v1/transactions/'+transactionId,
   method: 'GET',
   headers: {
-      'Authorization': 'Bearer up:yeah:6tuNxEg67TscZvN6xgT9FwfJf5n65CImbCQfCa8Xkc3YsZBSH8Csli1SAB9C9S3myfPyWGrnHOXGdZMGXvPjdQbyy3ZSQvTmdPnYoE41mIWrktOkg9dWVHJ2OZaWV0aa'
+      'Authorization': authToken
     }
   }
 
