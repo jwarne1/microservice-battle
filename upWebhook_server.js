@@ -32,6 +32,6 @@ const server = https.createServer((req, res) => {
     })
 })
 
-.createWebhook();
+createWebhook();
 
 console.log("Success!")
