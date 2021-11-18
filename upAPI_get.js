@@ -1,5 +1,5 @@
 // Defines a function that makes a GET request to the UP Transaction API
-async function get_transaction(transactionId){
+async function getTransaction(transactionId){
   const https = require('https');
   const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
   const client = new SecretManagerServiceClient();
@@ -34,4 +34,4 @@ async function get_transaction(transactionId){
   req.end()
 }
 
-module.exports = {get_transaction};
+module.exports = {getTransaction};
