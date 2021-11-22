@@ -1,7 +1,8 @@
 // This is the main script that runs on the cloud run instance
 const https = require('https');
+const crypto = require('crypto')
 const upAPI = require("./upAPI_get.js");
-const upWebhookInit = require("./upWebhook_init.js")
+const upWebhookInit = require("./upWebhook_init.js").default
 const hostname = '0.0.0.0';
 const port = process.env['PORT'] || 80;
 
@@ -23,7 +24,7 @@ const server = https.createServer((req, res) => {
     }
     res.statusCode = 200;
     res.end();
-    })
+  })
 })
 
 server.listen(port, hostname, () => {

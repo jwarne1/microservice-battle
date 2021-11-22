@@ -24,6 +24,7 @@ async function createWebhook() {
       })
     )
 
+  // Define API request
   const options = {
     hostname: 'api.up.com.au',
     path: '/api/v1/webhooks',
