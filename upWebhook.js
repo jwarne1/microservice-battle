@@ -2,7 +2,7 @@
 const https = require('https');
 const crypto = require('crypto')
 const upAPI = require("./upAPI_get.js");
-const upWebhookInit = require("./upWebhook_init.js").default
+const upWebhookInit = require("./upWebhook_init.js")
 const hostname = '0.0.0.0';
 const port = process.env['PORT'] || 80;
 
