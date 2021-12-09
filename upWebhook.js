@@ -1,7 +1,7 @@
 // This is the main script that runs on the cloud run instance
 const https = require('https');
 const crypto = require('crypto')
-const upAPI = require("./upAPI_get.js");
+const upAPI = require("./upAPI_getTransaction.js");
 const upWebhookInit = require("./upWebhook_init.js")
 const hostname = '0.0.0.0';
 const port = process.env['PORT'] || 80;
