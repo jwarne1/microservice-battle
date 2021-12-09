@@ -4,10 +4,7 @@ const https = require('https');
 const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
 const client = new SecretManagerServiceClient();
 
-// ID of Webhook that needs to be deleted
-var webhookId = "0e3fae1d-ffa1-41f3-8f41-d7427fce3008";
-
-async function deleteWebHook() {
+async function deleteWebhook(webhookId) {
   // Retrieve authentication token from secret manager
   // Access secret manager to retreive user auth token from UP
   const [accessResponse] = await client.accessSecretVersion({
@@ -38,4 +35,4 @@ async function deleteWebHook() {
   req.end()
 }
 
-deleteWebHook();
+module.exports = {deleteWebhook};
