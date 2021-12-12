@@ -39,8 +39,13 @@ async function createWebhook() {
   const req = https.request(options, res => {
     console.log(`statusCode: ${res.statusCode}`)
 
-    res.on('data', d => {
-      process.stdout.write(d)
+    var data = ''
+    res.on('data', chunk => {
+      data += chunk;
+    })
+    res.on('end', () => {
+      const response = JSON.parse(data);
+      const secretKey = response.data.attributes.secretKey;
     })
   })
 
@@ -51,6 +56,10 @@ async function createWebhook() {
   req.write(data)
   console.log("Webhook created successfully!")
   req.end()
+
+  return (
+    secretKey
+  )
 }
 
 module.exports = {createWebhook};
