@@ -36,7 +36,7 @@ async function getWebhooks() {
                     for (i in webhookData.data) {
                         webhookList.push(webhookData.data[i].id)
                     }
-                    // console.log(webhookList);
+                    console.log(webhookList);
                     resolve(webhookList);
                 })
             } catch (error) {
@@ -52,6 +52,6 @@ async function getWebhooks() {
     });
 }
 
-// console.log(getWebhooks());
+getWebhooks();
 
 module.exports = { getWebhooks };

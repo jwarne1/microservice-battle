@@ -46,6 +46,7 @@ async function createWebhook() {
     res.on('end', () => {
       const response = JSON.parse(data);
       const secretKey = response.data.attributes.secretKey;
+      console.log(secretKey);
     })
   })
 

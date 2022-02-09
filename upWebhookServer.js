@@ -1,7 +1,7 @@
 // This is the main script that runs on the cloud run instance
 const https = require('https');
 const crypto = require('crypto')
-const upAPI = require("./upAPI_getTransaction.js");
+const upAPI = require("./upApiGetTransaction.js");
 const upWebhookInit = require("./upWebhook_init.js")
 const hostname = '0.0.0.0';
 const port = process.env['PORT'] || 80;
@@ -31,5 +31,11 @@ server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 })
 
-// Initialise the webhook
-upWebhookInit.createWebhook();
+// Check to see if there are any webhooks which have already been created
+const webhookList = await upWebhookList.getWebhooks();
+
+// If there are no active webhooks, then create a new webhook
+if (webhookList.length == 0) {
+  // This is where we get the webhook ID from the webhook, and then store it into secret manager
+  upWebhookInit.createWebhook();
+}

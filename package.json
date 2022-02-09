@@ -2,14 +2,14 @@
   "name": "up-webhook",
   "version": "1.0.0",
   "description": "",
-  "main": "upWebhook.js",
+  "main": "upWebhookServer.js",
   "dependencies": {
     "@google-cloud/secret-manager": "^3.10.1",
     "node.js": "^0.0.1-security"
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node upWebhook.js",
+    "start": "node upWebhookServer.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
