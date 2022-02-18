@@ -17,7 +17,7 @@ async function createWebhook() {
         data: {
           attributes: {
             // URL of Cloud Run Service
-            url: 'https://up-webhook-q55fhdfira-km.a.run.app',
+            url: 'https://up-webhook-q55fhdfira-uc.a.run.app',
             description: 'Webhook running on GCP'
           }
         }
