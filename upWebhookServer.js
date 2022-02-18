@@ -2,7 +2,8 @@
 const https = require('https');
 const crypto = require('crypto')
 const upAPI = require("./upApiGetTransaction.js");
-const upWebhookInit = require("./upWebhook_init.js")
+const upWebhookCreate = require("./upWebhookCreate.js")
+const upWebhookList = require("./upWebhookList.js")
 const hostname = '0.0.0.0';
 const port = process.env['PORT'] || 80;
 
@@ -37,6 +38,6 @@ upWebhookList.getWebhooks().then(webhookList => {
   // If there are no active webhooks, then create a new webhook
   if (webhookList.length == 0) {
   // This is where we get the webhook ID from the webhook, and then store it into secret manager
-    upWebhookInit.createWebhook();
+    upWebhookCreate.createWebhook();
   }
 })
