@@ -33,7 +33,7 @@ server.listen(port, hostname, () => {
 })
 
 // Check to see if there are any webhooks which have already been created
-upWebhookList.getWbehooks().then(webhookList => {
+upWebhookList.getWebhooks().then(webhookList => {
   // If there are no active webhooks, then create a new webhook
   if (webhookList.length == 0) {
   // This is where we get the webhook ID from the webhook, and then store it into secret manager
