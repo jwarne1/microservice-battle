@@ -11,6 +11,7 @@ const port = process.env['PORT'] || 80;
 // Create https server to listen to webhook
 var data = '';
 const server = https.createServer((req, res) => {
+  console.log("Request Received");
   req.on('data', chunk => {
     data += chunk;
   })
@@ -32,6 +33,8 @@ const server = https.createServer((req, res) => {
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 })
+
+console.log("Now Check Webhooks");
 
 // Check to see if there are any webhooks which have already been created
 upWebhookList.getWebhooks().then(webhookList => {
