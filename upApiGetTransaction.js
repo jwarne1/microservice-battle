@@ -34,4 +34,6 @@ async function getTransaction(transactionId){
   req.end()
 }
 
+// getTransaction("766678dd-bdf1-4494-8866-9c14307a5a1b");
+
 module.exports = {getTransaction};

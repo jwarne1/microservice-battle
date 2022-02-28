@@ -52,6 +52,6 @@ async function getWebhooks() {
     });
 }
 
-getWebhooks();
+// getWebhooks();
 
 module.exports = { getWebhooks };

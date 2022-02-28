@@ -5,7 +5,7 @@ const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
 const client = new SecretManagerServiceClient();
 
 // Set the webhookID to the ID generated from upWebhook_create
-const webhookId = 'c4e9e716-8bc9-40ca-8983-38a465b0a190';
+const webhookId = '6c6f3d94-af3e-44a3-9b9a-9b3ec0c8852c';
 
 async function pingWebHook() {
   // Retrieve authentication token from secret manager

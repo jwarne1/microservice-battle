@@ -1,5 +1,5 @@
 // This is the main script that runs on the cloud run instance
-const https = require('https');
+const http = require('http');
 const crypto = require('crypto')
 const upAPI = require("./upApiGetTransaction.js");
 const upWebhookCreate = require("./upWebhookCreate.js")
@@ -8,11 +8,12 @@ const hostname = '0.0.0.0';
 const port = process.env['PORT'] || 80;
 
 
-// Create https server to listen to webhook
+// Create http server to listen to webhook
 var data = '';
-const server = https.createServer((req, res) => {
+const server = http.createServer((req, res) => {
   console.log("Request Received");
   req.on('data', chunk => {
+    console.log("Request Received 2");
     data += chunk;
   })
   req.on('end', () => {
