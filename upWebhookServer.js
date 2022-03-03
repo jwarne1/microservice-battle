@@ -13,15 +13,15 @@ var data = '';
 const server = http.createServer((req, res) => {
   console.log("Request Received");
   req.on('data', chunk => {
-    console.log("Request Received 2");
+    console.log("Processing Request");
     data += chunk;
   })
   req.on('end', () => {
-    console.log(JSON.parse(data));
+    console.log("Data Received");
     var transactionData = JSON.parse(data);
     var transactionId = transactionData.data.relationships.transaction.data.id;   
     try{
-      console.log(transactionId);
+      console.log("Transaction ID:" + transactionId);
       upAPI.getTransaction(transactionId);
     }catch(error){
       console.log(error)

@@ -1,5 +1,4 @@
-// Script to test successful deployment of the webhook 
-// Executing this will send a transaction to the webhook
+// Script to delete an existing webhook with webhookID
 const https = require('https');
 const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
 const client = new SecretManagerServiceClient();

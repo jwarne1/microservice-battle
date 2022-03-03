@@ -1,5 +1,6 @@
 // Script to test successful deployment of the webhook 
 // Executing this will send a transaction to the webhook
+// This is to be executed locally, it will send a request to the UP API which will in turn generate an event for the webhook
 const https = require('https');
 const {SecretManagerServiceClient} = require('@google-cloud/secret-manager');
 const client = new SecretManagerServiceClient();

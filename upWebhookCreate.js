@@ -1,4 +1,4 @@
-// Defines function that initialises the webhook and creates a secret with the webhook token
+// Defines function that initialises the webhook and creates a secret with the webhook token in Secret Manager
 async function createWebhook() {
 // Access secret manager to retreive user auth token from UP
   const https = require('https');
